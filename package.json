@@ -27,10 +27,6 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt-lib-contrib": "~0.6.0",
-    "async": "~0.2.9",
-    "lodash": "~2.3.0",
-    "chalk": "~0.3.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
