@@ -45,6 +45,14 @@ module.exports = function(grunt) {
             return options.dest + parts.join('.');
         };
 
+        var mergeData = function(destObj, srcObj) {
+            for (var attrname in srcObj) {
+                if (srcObj.hasOwnProperty(attrname)) {
+                    destObj[attrname] = srcObj[attrname];
+                }
+            }
+        }
+
         var files = [];
         var localeData = {};
         var locales = [];
@@ -82,9 +90,12 @@ module.exports = function(grunt) {
             if (options.filterLocale.length && options.filterLocale.indexOf(locale) === -1) {
                 grunt.log.debug('Ignoring "' + filepath + '" because locale "' + locale + '" is not on whitelist.');
             }
-            // merge data
+            // read data and merge
             grunt.log.debug('... reading "' + locale + '" from "' + filepath + '".');
-            localeData[locale] = grunt.file.readJSON(filepath);
+            if (!localeData[locale]) {
+                localeData[locale] = {};
+            }
+            mergeData(localeData[locale], grunt.file.readJSON(filepath));
         });
 
         grunt.log.debug("Generating locale dist files...");
@@ -93,15 +104,17 @@ module.exports = function(grunt) {
         for (var locale in localeData) {
             var filepath = makeDestinationFilename(locale);
             grunt.log.debug('... writing "' + locale + '" into "' + filepath + '".');
-            grunt.file.write(filepath, JSON.stringify(localeData));
+            grunt.file.write(filepath, JSON.stringify(localeData[locale]));
             locales.push(locale);
         }
 
+        // bork if nothing generated
         if (!locales.length) {
             grunt.fail.warn('No locale file generated');
         }
+        // report sucess otherwise
         else {
-            grunt.log.writeln('Locales generated: [' + locales.join(', ') + '].');
+            grunt.log.writeln('Locales generated: [' + locales.join(', ') + '] in "' + options.dest + '".');
         }
 
     });
