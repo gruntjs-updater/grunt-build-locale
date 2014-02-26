@@ -1,7 +1,7 @@
 {
   "name": "grunt-build-locale",
   "description": "Grunt task to collect, merge and publish locale files.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/ef-ctx/grunt-build-locale",
   "author": {
     "name": "Andre Torgal",
@@ -26,6 +26,7 @@
   "scripts": {
     "test": "grunt test"
   },
+  "main": "Gruntfile.js",
   "dependencies": {
   },
   "devDependencies": {
@@ -41,9 +42,6 @@
     "gruntplugin",
     "i18n",
     "compile"
-  ],
-  "files": [
-    "tasks/build-locale.js"
   ],
   "readmeFilename": "README.md"
 }
