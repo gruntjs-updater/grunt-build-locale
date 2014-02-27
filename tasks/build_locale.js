@@ -90,7 +90,7 @@ module.exports = function(grunt) {
             }
             // filter locale
             if (options.filterLocale.length && options.filterLocale.indexOf(locale) === -1) {
-                grunt.log.debug('Ignoring "' + filepath + '" because locale "' + locale + '" is not on whitelist.');
+                grunt.log.debug('... ignoring "' + locale + '" in "' + filepath + '".');
             }
             // read data and merge
             grunt.log.debug('... reading "' + locale + '" from "' + filepath + '".');
