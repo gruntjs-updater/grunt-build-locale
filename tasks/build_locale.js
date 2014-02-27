@@ -20,6 +20,8 @@ module.exports = function(grunt) {
             sufix: ''
         });
 
+        grunt.log.debug('Options: ', JSON.stringify(options));
+
         // normalise destination dir
         if (options.dest.charAt(options.dest.length - 1) != '/') {
             options.dest += '/';
