@@ -8,6 +8,8 @@
 
 'use strict';
 
+var extend = require('node.extend');
+
 module.exports = function(grunt) {
 
     // see the Grunt documentation for more information regarding task
@@ -97,7 +99,7 @@ module.exports = function(grunt) {
             if (!localeData[locale]) {
                 localeData[locale] = {};
             }
-            mergeData(localeData[locale], grunt.file.readJSON(filepath));
+            extend(true, localeData[locale], grunt.file.readJSON(filepath));
         });
 
         grunt.log.debug("Generating locale dist files...");
