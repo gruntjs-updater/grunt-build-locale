@@ -49,6 +49,7 @@ grunt.initConfig({
         // Target-specific options go here.
         dest: 'build/locale/',
         filterLocale: ['en_US', 'pt_PT'],
+        prefix: 'foobar',
         sufix: 'v0.1'
       }
     },
@@ -68,17 +69,24 @@ Default value: ``
 
 A whitelist of locales. If empty all detected locales will be generated.
 
-#### options.log
-Type: `String`
+#### options.prefix
+Type: `string`
 Default value: ``
 
-Log to this file all overriden values outputs a log file in the format: LOCALE | original key | value | overriding file | overriding value
+Prefix to the generated file names.
 
-#### options.log
-Type: `String`
+Ex: `options.prefix = "foobar"` results in `foobar.en_US.locale.json`
+
+#### options.sufix
+Type: `string`
 Default value: ``
 
-Log to this file all overriden values outputs a log file in the format: LOCALE | original key | value | overriding file | overriding value
+Prefix to the generated file names, will go between locale name and file extension.
+
+Ex: `options.sufix = "foobar"` results in `en_US.foobar.locale.json`
+
+Leave this option blank if you want to use the generated files as input to another build_locale process, for instance
+when generating files in a library that will be further concatenated in the context of other libs or applications.
 
 ### Usage Examples
 

@@ -19,6 +19,7 @@ module.exports = function(grunt) {
         var options = this.options({
             dest: '.',
             filterLocale: [],
+            prefix: '',
             sufix: ''
         });
 
@@ -41,7 +42,11 @@ module.exports = function(grunt) {
         };
 
         var makeDestinationFilename = function(locale) {
-            var parts = [locale];
+            var parts = [];
+            if (options.prefix) {
+                parts.push(options.prefix);
+            }
+            parts.push(locale);
             if (options.sufix) {
                 parts.push(options.sufix);
             }
